@@ -1,5 +1,6 @@
 // Author: David Qin
-// 2014-11-05
+// E-mail: david@creatingev.com
+// Date: 2014-11-05
 
 (function($){
 
@@ -18,7 +19,7 @@
     var _this = this;
 
     this.searchableElement.click(function(event){
-      event.stopPropagation();
+      // event.stopPropagation();
       _this.show();
     }).on('keydown', function(event){
       if (event.which === 13 || event.which === 40 || event.which == 38){
@@ -27,8 +28,9 @@
       }
     });
 
-    $(document).on('click', null, function(){
-      _this.hide();
+    $(document).on('click', null, function(event){
+      if(_this.searchableElement.has($(event.target)).length === 0)
+        _this.hide();
     });
 
     this.input.on('keydown', function(event){
@@ -196,7 +198,10 @@
   });
 
   $.fn.searchableSelect = function(options){
-    var sS = new $sS(this, options);
+    this.each(function(){
+      var sS = new $sS($(this), options);
+    });
+
     return this;
   };
 
