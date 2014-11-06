@@ -44,3 +44,7 @@ You need script like this:
   });
 </script>
 ```
+
+# Author
+
+David Qin
