@@ -72,14 +72,24 @@
       this.items = $('<div class="searchable-select-items"></div>');
       this.caret = $('<span class="searchable-select-caret"></span>');
 
+      this.scrollPart = $('<div class="searchable-scroll"></div>');
+      this.hasPrivious = $('<div class="searchable-has-privious">...</div>');
+      this.hasNext = $('<div class="searchable-has-next">...</div>');
+
       this.dropdown.append(this.input);
-      this.dropdown.append(this.items);
+      this.dropdown.append(this.scrollPart);
+
+      this.scrollPart.append(this.hasPrivious);
+      this.scrollPart.append(this.items);
+      this.scrollPart.append(this.hasNext);
+
       this.searchableElement.append(this.caret);
       this.searchableElement.append(this.holder);
       this.searchableElement.append(this.dropdown);
       this.element.after(this.searchableElement);
 
       this.buildItems();
+      this.setPriviousAndNextVisibility();
     },
 
     filter: function(){
@@ -142,6 +152,13 @@
 
         _this.items.append(item);
       });
+
+      console.log(this.items.scrollTop() + this.items.innerHeight());
+      console.log(this.items[0].scrollHeight);
+
+      this.items.on('scroll', function(){
+        _this.setPriviousAndNextVisibility();
+      })
     },
     show: function(){
       this.dropdown.removeClass('searchable-select-hide');
@@ -194,6 +211,24 @@
 
       this.currentHoverItem = item;
       item.addClass('hover');
+    },
+
+    setPriviousAndNextVisibility: function(){
+      if(this.items.scrollTop() === 0){
+        this.hasPrivious.addClass('searchable-select-hide');
+        this.scrollPart.removeClass('has-privious');
+      } else {
+        this.hasPrivious.removeClass('searchable-select-hide');
+        this.scrollPart.addClass('has-privious');
+      }
+
+      if(this.items.scrollTop() + this.items.innerHeight() >= this.items[0].scrollHeight){
+        this.hasNext.addClass('searchable-select-hide');
+        this.scrollPart.removeClass('has-next');
+      } else {
+        this.hasNext.removeClass('searchable-select-hide');
+        this.scrollPart.addClass('has-next');
+      }
     }
   });
 

@@ -68,8 +68,39 @@ Date: 2014-11-05
   width: 100%;
 }
 
-.searchable-select-items {
+.searchable-scroll {
   margin-top: 4px;
+  position: relative;
+}
+
+.searchable-scroll.has-privious {
+  padding-top: 16px;
+}
+
+.searchable-scroll.has-next {
+  padding-bottom: 16px;
+}
+
+.searchable-has-privious {
+  top: 0;
+}
+
+.searchable-has-next {
+  bottom: 0;
+}
+
+.searchable-has-privious, .searchable-has-next {
+  height: 16px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  text-align: center;
+  z-index: 10;
+  background-color: white;
+  line-height: 8px;
+}
+
+.searchable-select-items {
   max-height: 400px;
   overflow-y: scroll;
   position: relative;
