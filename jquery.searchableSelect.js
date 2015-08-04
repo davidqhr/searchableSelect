@@ -13,7 +13,7 @@
 
   $.searchableSelect = function(element, options) {
     this.element = element;
-    this.options = options;
+    this.options = options || {};
     this.init();
 
     var _this = this;
@@ -75,6 +75,34 @@
       this.scrollPart = $('<div class="searchable-scroll"></div>');
       this.hasPrivious = $('<div class="searchable-has-privious">...</div>');
       this.hasNext = $('<div class="searchable-has-next">...</div>');
+
+      this.hasNext.on('mouseenter', function(){
+        _this.hasNextTimer = null;
+
+        var f = function(){
+          var scrollTop = _this.items.scrollTop();
+          _this.items.scrollTop(scrollTop + 20);
+          _this.hasNextTimer = setTimeout(f, 50);
+        }
+
+        f();
+      }).on('mouseleave', function(event) {
+        clearTimeout(_this.hasNextTimer);
+      });
+
+      this.hasPrivious.on('mouseenter', function(){
+        _this.hasPriviousTimer = null;
+
+        var f = function(){
+          var scrollTop = _this.items.scrollTop();
+          _this.items.scrollTop(scrollTop - 20);
+          _this.hasPriviousTimer = setTimeout(f, 50);
+        }
+
+        f();
+      }).on('mouseleave', function(event) {
+        clearTimeout(_this.hasPriviousTimer);
+      });
 
       this.dropdown.append(this.input);
       this.dropdown.append(this.scrollPart);
