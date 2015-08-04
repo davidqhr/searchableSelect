@@ -1,0 +1,29 @@
+{
+  "name": "searchableSelect",
+  "version": "0.0.1",
+  "homepage": "https://github.com/davidqhr/searchableSelect",
+  "authors": [
+    "david <david@creatingev.com>"
+  ],
+  "description": "A jquery plugin, make select searchable",
+  "main": [
+    "jquery.searchableSelect.js",
+    "jquery.searchableSelect.css"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "jquery",
+    "select",
+    "search"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

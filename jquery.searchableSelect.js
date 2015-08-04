@@ -1,5 +1,5 @@
 // Author: David Qin
-// E-mail: david@creatingev.com
+// E-mail: david@hereapp.cn
 // Date: 2014-11-05
 
 (function($){
@@ -99,6 +99,8 @@
       if(this.currentSelectedItem.hasClass('searchable-select-hide') && this.items.find('.searchable-select-item:not(.searchable-select-hide)').length > 0){
         this.hoverFirstNotHideItem();
       }
+
+      this.setPriviousAndNextVisibility();
     },
 
     hoverFirstNotHideItem: function(){
@@ -153,9 +155,6 @@
         _this.items.append(item);
       });
 
-      console.log(this.items.scrollTop() + this.items.innerHeight());
-      console.log(this.items[0].scrollHeight);
-
       this.items.on('scroll', function(){
         _this.setPriviousAndNextVisibility();
       })
@@ -164,6 +163,7 @@
       this.dropdown.removeClass('searchable-select-hide');
       this.input.focus();
       this.status = 'show';
+      this.setPriviousAndNextVisibility();
     },
 
     hide: function(){
