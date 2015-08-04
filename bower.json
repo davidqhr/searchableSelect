@@ -10,9 +10,6 @@
     "jquery.searchableSelect.js",
     "jquery.searchableSelect.css"
   ],
-  "moduleType": [
-    "globals"
-  ],
   "keywords": [
     "jquery",
     "select",
